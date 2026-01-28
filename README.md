@@ -443,6 +443,11 @@ To do that, we have selected three.
 Send this to the chat bot:
 
 ```text
+I want you to add a skill and wrap it around the following mcp git repos with python courses  [https://gitmcp.io/darshilparmar/python-for-data-engineering https://gitmcp.io/jakevdp/PythonDataScienceHandbook https://gitmcp.io/dabeaz-course/python-mastery].
+
+Here is some information for you SKILL.md file:
+[
+
 GIT MCP SOURCES (COURSE PACK)
 You have access to a Git MCP server endpoint that exposes these repositories:
 
@@ -506,6 +511,7 @@ OUTPUT MUST REMAIN <5 MIN READ
   - 12 lines of code in the example
   - 4 self-check bullets/asserts
   - 1 stretch item
+]
 ```
 
 ### Other MCP
