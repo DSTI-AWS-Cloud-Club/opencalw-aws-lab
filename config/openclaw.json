@@ -1,11 +1,11 @@
 {
   "meta": {
-    "lastTouchedVersion": "2026.1.30",
-    "lastTouchedAt": "2026-02-02T16:43:35.905Z"
+    "lastTouchedVersion": "2026.2.1",
+    "lastTouchedAt": "2026-02-04T02:19:44.633Z"
   },
   "wizard": {
-    "lastRunAt": "2026-02-02T16:43:35.900Z",
-    "lastRunVersion": "2026.1.30",
+    "lastRunAt": "2026-02-04T01:58:34.023Z",
+    "lastRunVersion": "2026.2.1",
     "lastRunCommand": "doctor",
     "lastRunMode": "local"
   },
@@ -17,6 +17,130 @@
       }
     }
   },
+  "models": {
+    "mode": "merge",
+    "providers": {
+      "nvidia": {
+        "baseUrl": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "<SET_NVIDIA_API_KEY>",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "moonshotai/kimi-k2-instruct-0905",
+            "name": "Kimi K2 Instruct 0905",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "moonshotai/kimi-k2-thinking",
+            "name": "Kimi K2 Thinking",
+            "reasoning": true,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "z-ai/glm4.7",
+            "name": "GLM 4.7",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "deepseek-ai/deepseek-v3.2",
+            "name": "DeepSeek v3.2",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "mistralai/devstral-2-123b-instruct-2512",
+            "name": "Mistral Devstral 2",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "minimaxai/minimax-m2",
+            "name": "Minimax M2",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          },
+          {
+            "id": "qwen/qwen3-235b-a22b",
+            "name": "Qwen 3",
+            "reasoning": false,
+            "input": [
+              "text"
+            ],
+            "cost": {
+              "input": 0,
+              "output": 0,
+              "cacheRead": 0,
+              "cacheWrite": 0
+            },
+            "contextWindow": 200000,
+            "maxTokens": 8192
+          }
+        ]
+      }
+    }
+  },
   "agents": {
     "defaults": {
       "model": {
@@ -24,8 +148,17 @@
       },
       "models": {
         "google/gemini-2.5-flash-lite": {},
-        "google/gemini-3-pro-preview": {},
-        "google/gemini-3-flash-lite": {}
+        "google/gemini-3-pro-preview": {
+          "alias": "gemini"
+        },
+        "google/gemini-3-flash-lite": {},
+        "nvidia/moonshotai/kimi-k2-instruct-0905": {},
+        "nvidia/moonshotai/kimi-k2-thinking": {},
+        "nvidia/deepseek-ai/deepseek-v3.2": {},
+        "nvidia/z-ai/glm4.7": {},
+        "nvidia/mistralai/devstral-2-123b-instruct-2512": {},
+        "nvidia/minimaxai/minimax-m2": {},
+        "nvidia/qwen/qwen3-235b-a22b": {}
       },
       "workspace": "/home/ubuntu/.openclaw/workspace",
       "compaction": {
@@ -46,6 +179,7 @@
           "env": {
             "GEMINI_API_KEY": "${GEMINI_API_KEY}",
             "GOOGLE_PLACES_API_KEY": "${GOOGLE_PLACES_API_KEY}",
+            "NVIDIA_API_KEY": "${NVIDIA_API_KEY}",
             "TRELLO_API_KEY": "${TRELLO_API_KEY}",
             "TRELLO_TOKEN": "${TRELLO_TOKEN}",
             "GH_TOKEN": "${GH_TOKEN}",

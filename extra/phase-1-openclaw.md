@@ -907,3 +907,72 @@ gh pr create --title "Portfolio updates" --body "Automated updates from OpenClaw
 # Merge when ready (optional)
 gh pr merge --squash
 ```
+
+# EXTRA
+
+## NVIDIA API KEY -> USE Nvidia build service to call many models !
+### Define API KEY in env variables
+1. Create an account in NVIDIA build and create an API KEY.
+2. Create env variable in `~/.bashrc` file, edit it and add it to the env variables:
+
+Add this line
+```bash
+export NVIDIA_API_KEY="YOUR_NVIDIA_API_KEY"
+```
+3. Restart env variables
+` source ~/.bashrc`
+
+### Create the provider in OpenClaw
+
+1. **Define the NVIDIA LLM Provider**:  We first needed to tell OpenClaw about the NVIDIA API and how to access it. This was done by adding an entry under `models.providers` in `openclaw.json` config file.
+  • The provider was named `nvidia`.
+  • It was configured as an `openai_compatible` type.
+  • We specified the `baseUrl` as `https://integrate.api.nvidia.com/v1`.
+  • We indicated that the apiKey should be sourced from an environment variable named `NVIDIA_API_KEY`.
+  • The specific model within this provider was moonshotai/kimi-k2.5.
+  • We also provided details for the model itself, like its contextWindow and maxTokens, along with its id and name.
+The exact JSON patch applied for this step was:
+
+```bash
+{
+  "models": {
+    "providers": {
+      "nvidia": {
+        "baseUrl": "https://integrate.api.nvidia.com/v1",
+        "apiKey": "NVIDIA_API_KEY",
+        "api": "openai-completions",
+        "models": [
+          {
+            "id": "moonshotai/kimi-k2.5",
+            "name": "Kimi K2.5",
+            "reasoning": false,
+            "input": ["text"],
+            "cost": {"input": 0, "output": 0, "cacheRead": 0, "cacheWrite": 0},
+            "contextWindow": 16384,
+            "maxTokens": 16384
+          }
+        ]
+      }
+    }
+  }
+}
+
+```
+
+Note: This patch used apiKey to reference the environment variable. If you were to provide the key directly (not recommended for security), it would be a string value.
+2. **Register the Model for Agent Use:** After defining the provider, we needed to make sure agents could discover and use the `moonshotai/kimi-k2.5` model specifically. This involves updating the agents.defaults.models configuration.
+  • We registered the model using the format `provider_name/model_id`, which in this case is nvidia/moonshotai/kimi-k2.5.
+The JSON patch for this step was:
+
+3. **Restart the Gateway**:  The `config.patch` action automatically triggers a gateway restart to apply these changes. You'll see a "GatewayRestart: ok" confirmation after each successful patch.
+
+4. **Test and Verify**: load model into Openclaw tui and chat with it
+
+5. **Define Kimi for managing sub-agents**: Kimi K2.5 is great for sub-agents management and optimal parallelisation.
+To set nvidia/moonshotai/kimi-k2.5 as the default model for managing sub-agents, the bot will need to update the `primary model` setting within the agent configuration (`openclaw.json` file).
+
+Or ask your bot the following, he'll do the rest.
+
+```text
+I want you to use the NVIDA_API_KEY to set a Kimi K2.5 (moonshotai/Kimi-K2.5) as default model for managing sub-agents.
+``` 

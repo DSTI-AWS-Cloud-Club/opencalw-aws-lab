@@ -35,6 +35,8 @@ We will ask the bot to give us the latest trends in Data, AI agents, and Machine
 ## Resources
 
 ### OpenClaw resources (legacy links still valid)
+- :bulb: **Amazin resource!**. Use the [Deep wiki](https://deepwiki.com/openclaw/openclaw) to ask questions about everything you need to know about OpenClaw. e.g how to configure Openclaw regarding security and skills... 
+It has an AI to assist you on complex questions !
 - Learn how people use OpenClaw on its [website](https://clawd.bot/)
 - Walkthrough video for installing OpenClaw in an EC2 instance: [Video from AJ](https://x.com/techfrenAJ/status/2014934471095812547/video/1)
 - Injection protection tutorial by Dicklesworthstone (legacy repo path still uses the previous name): [tutorial link](https://github.com/Dicklesworthstone/acip/tree/main/integrations/clawdbot)
